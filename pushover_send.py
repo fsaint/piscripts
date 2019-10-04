@@ -28,6 +28,12 @@ def alert(text, **kwargs):
 if __name__ == "__main__":
     #import doctest
     #doctest.testmod()
-    lst = sys.argv[2:]
-    args = {lst[i]: lst[i + 1] for i in range(0, len(lst), 2)} 
-    alert(sys.argv[1], **args)
+    if len(sys.argv) == 1:
+        lines = []
+        for line in sys.stdin:
+            lines.append(line)
+        alert("".join(lines))
+    else:
+        lst = sys.argv[2:]
+        args = {lst[i]: lst[i + 1] for i in range(0, len(lst), 2)} 
+        alert(sys.argv[1], **args)
